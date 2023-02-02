@@ -3,10 +3,6 @@
     // Before you can use the database, you need to configure the "db" object
     // with your team name in the "js/movies-api.js" file.
 
-    $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.movie_poster_API}&language=en-US&page=1&include_adult=false`).done(function(data)
-    {
-        console.log(data);
-    });
 
 
     let movies = await getMovies();
