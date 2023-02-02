@@ -1,0 +1,33 @@
+/*********** PAGE STRUCTURE ***************/
+
+.page-wrapper
+{
+    display: flex;
+
+    justify-content: center;
+}
+
+.container
+{
+    /*display: flex;*/
+}
+
+.row
+{
+    /*display: flex;*/
+}
+
+.column
+{
+    /*display: flex;*/
+}
+
+
+
+
+/****** ID'S ***********/
+#movie
+{
+    display: flex;
+    margin: 1em 0;
+}
