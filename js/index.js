@@ -27,6 +27,8 @@
     $('#submitMovie').on('click', async function(e)
     {
 
+        html = '';
+
         e.preventDefault();
         // makeMovieObj();
 
@@ -34,13 +36,12 @@
 
         console.log(makeMovieObj());
 
-        populateMovies();
+        let allMovies = await populateMovies();
 
     });
 
-    function populateMovies()
+    async function populateMovies()
     {
-        html = '';
         for(let movie of movies)
         {
 
