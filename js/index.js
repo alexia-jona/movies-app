@@ -4,19 +4,47 @@
     // with your team name in the "js/movies-api.js" file.
 
 
-
     let movies = await getMovies();
+
+    let html = '';
 
     console.log(movies);
 
-    let html = '';
-    for(let movie of movies)
+    populateMovies();
+
+
+
+    const makeMovieObj = () =>
+    {
+        return {
+            title: $('#input-title').val(),
+            genre: $('#input-genres').val(),
+            actors: $('#input-actors').val()
+        }
+    }
+
+
+    $('#submitMovie').on('click', async function(e)
     {
 
+        e.preventDefault();
+        // makeMovieObj();
 
+        let addedMovies = await addMovie(makeMovieObj());
 
+        console.log(makeMovieObj());
 
-        html += `<div class="row" id="movie">
+        populateMovies();
+
+    });
+
+    function populateMovies()
+    {
+        html = '';
+        for(let movie of movies)
+        {
+
+            html += `<div class="row" id="movie">
 
                     <div class="column">
                         <div id="title">${movie.title}</div>
@@ -26,10 +54,14 @@
                     </div>
                     
                  </div>`
+        }
+
+
+        $('#movies').html(html);
+
     }
 
 
-    $('#movies').html(html);
 
 
 })();
