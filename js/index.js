@@ -6,7 +6,7 @@
     let movies = await getMovies();
     let html = '';
 
-    populateMovies(movies);
+    await populateMovies(movies);
 
     const makeMovieObj = () => {
         return {
@@ -38,6 +38,7 @@
         editMovie(movies);
 
 
+
     });
 
 
@@ -59,25 +60,36 @@
                     await deleteMovie(arr[i]);
                     console.log(deleteCheck);
                     updatedMovies = await getUpdatedMovies()
-                    populateMovies(updatedMovies)
+                    await populateMovies(updatedMovies)
+                    location.reload()
                 }
 
 
             })
         }
+        editMovie(arr);
     }
+
+
+
+    /////// CHECKING FOR BUTTON CLICK ON UPDATE ////////
 
         for (let i = 0; i < movies.length; i++) {
             $(`#updateMovieBtn${i}`).on('click', function (e) {
                 e.preventDefault();
                 $(`#movie${i}`).toggleClass('hidden');
                 $(`#update-form${i}`).toggleClass('hidden');
-                editMovie(movies);
+                // editMovie(movies);
             });
         }
 
+
+
+        ////// UPDATE MOVIE (PUT) //////////
+
     function editMovie(arr) {
-        // removeMovie(arr);
+
+
         for (let i = 0; i < arr.length; i++) {
             $(`#updateMovie${i}`).on('click', async function (e) {
                 e.preventDefault();
@@ -99,8 +111,12 @@
                 // console.log($(`#update-actors${i}`).val())
                 await updateMovie(updateMovieObj)
                 console.log(arr)
-                updatedMovies = await getUpdatedMovies()
-                populateMovies(updatedMovies)
+                // updatedMovies = await getUpdatedMovies()
+                // populateMovies(updatedMovies)
+
+                location.reload();
+
+                // removeMovie(arr);
             });
 
 
@@ -118,10 +134,10 @@
             html += `<div class="row" id="movies" data-movie="${arr[i].id}">
                     <div class="column" id="movie${i}">
                     <button id="deleteMovieBtn${i}">X</button>
-                        <div id="title">${arr[i].title}</div>
+                        <div id="title">Title: ${arr[i].title}</div>
                         <div id="movie-poster"></div>
-                        <div id="genres">${arr[i].genre}</div>
-                        <div id="actors">${arr[i].actors}</div>
+                        <div id="genres">Genre(s): ${arr[i].genre}</div>
+                        <div id="actors">Actor(s): ${arr[i].actors}</div>
                     <button id="updateMovieBtn${i}" onclick="">Update</button>
                               
                          
