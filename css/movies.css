@@ -23,6 +23,12 @@
     /*display: flex;*/
 }
 
+.hidden
+{
+    display: none;
+}
+
+
 
 /****** ID'S ***********/
 #movie {
