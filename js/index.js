@@ -61,13 +61,13 @@
                     console.log(deleteCheck);
                     updatedMovies = await getUpdatedMovies()
                     await populateMovies(updatedMovies)
-                    location.reload()
+                    // location.reload()
                 }
 
 
             })
         }
-        editMovie(arr);
+        // editMovie(arr);
     }
 
 
@@ -84,12 +84,9 @@
         }
 
 
-
         ////// UPDATE MOVIE (PUT) //////////
 
     function editMovie(arr) {
-
-
         for (let i = 0; i < arr.length; i++) {
             $(`#updateMovie${i}`).on('click', async function (e) {
                 e.preventDefault();
@@ -111,15 +108,13 @@
                 // console.log($(`#update-actors${i}`).val())
                 await updateMovie(updateMovieObj)
                 console.log(arr)
-                // updatedMovies = await getUpdatedMovies()
-                // populateMovies(updatedMovies)
+                updatedMovies = await getUpdatedMovies()
+                populateMovies(updatedMovies)
 
-                location.reload();
+                // location.reload();
 
                 // removeMovie(arr);
             });
-
-
         }
     }
 
