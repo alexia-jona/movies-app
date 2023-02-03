@@ -1,37 +1,31 @@
 /*********** PAGE STRUCTURE ***************/
+/*body {*/
+/*    background-image: url("/images/starry-night-sky.jpg");*/
+/*    background-size: cover;*/
+/*}*/
 
-.page-wrapper
-{
+.page-wrapper {
     display: flex;
-
     flex-direction: column;
-
-   align-items: center;
+    align-items: center;
 }
 
-.container
-{
+.container {
     /*display: flex;*/
 }
 
-.row
-{
+.row {
     display: flex;
-
     flex-direction: row;
 }
 
-.column
-{
+.column {
     /*display: flex;*/
 }
 
 
-
-
 /****** ID'S ***********/
-#movie
-{
+#movie {
     display: flex;
     margin: 1em 0;
 }

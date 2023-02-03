@@ -3,19 +3,13 @@
     // Before you can use the database, you need to configure the "db" object
     // with your team name in the "js/movies-api.js" file.
 
-
     let movies = await getMovies();
-
     let html = '';
-
     console.log(movies);
 
     populateMovies();
 
-
-
-    const makeMovieObj = () =>
-    {
+    const makeMovieObj = () => {
         return {
             title: $('#input-title').val(),
             genre: $('#input-genres').val(),
@@ -23,9 +17,7 @@
         }
     }
 
-
-    $('#submitMovie').on('click', async function(e)
-    {
+    $('#submitMovie').on('click', async function (e) {
 
         html = '';
 
@@ -33,20 +25,14 @@
         // makeMovieObj();
 
         let addedMovies = await addMovie(makeMovieObj());
-
         console.log(makeMovieObj());
-
         let allMovies = await populateMovies();
-
     });
 
-    async function populateMovies()
-    {
-        for(let movie of movies)
-        {
+    async function populateMovies() {
+        for (let movie of movies) {
 
             html += `<div class="row" id="movie">
-
                     <div class="column">
                         <div id="title">${movie.title}</div>
                         <div id="movie-poster"></div>
@@ -56,13 +42,8 @@
                     
                  </div>`
         }
-
-
         $('#movies').html(html);
-
     }
-
-
 
 
 })();
