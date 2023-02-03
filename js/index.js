@@ -58,7 +58,8 @@
                 if (deleteCheck) {
                     await deleteMovie(arr[i]);
                     console.log(deleteCheck);
-                    location.reload();
+                    updatedMovies = await getUpdatedMovies()
+                    populateMovies(updatedMovies)
                 }
 
 
@@ -66,34 +67,55 @@
         }
     }
 
-
-    function editMovie(arr) {
-        for (let i = 0; i < arr.length; i++) {
+        for (let i = 0; i < movies.length; i++) {
             $(`#updateMovieBtn${i}`).on('click', function (e) {
                 e.preventDefault();
                 $(`#movie${i}`).toggleClass('hidden');
                 $(`#update-form${i}`).toggleClass('hidden');
-
+                editMovie(movies);
             });
-            $(`#updateMovie${i}`).on('click', function (e) {
+        }
+
+    function editMovie(arr) {
+        removeMovie(arr);
+        for (let i = 0; i < arr.length; i++) {
+            $(`#updateMovie${i}`).on('click', async function (e) {
                 e.preventDefault();
+                let movieId = $(this).parents('[data-movie]').attr('data-movie');
+                console.log(i)
                 $(`#movie${i}`).toggleClass('hidden');
                 $(`#update-form${i}`).toggleClass('hidden');
 
+                let updateMovieObj =
+                    {
+                        id: movieId,
+                        title: $(`#update-title${i}`).val(),
+                        genre: $(`#update-genres${i}`).val(),
+                        actors: $(`#update-actors${i}`).val()
+                    }
+                console.log(updateMovieObj)
+                console.log($(`#update-title${i}`).val())
+                console.log($(`#update-genres${i}`).val())
+                console.log($(`#update-actors${i}`).val())
+                await updateMovie(updateMovieObj)
+                console.log(arr)
+                updatedMovies = await getUpdatedMovies()
+                populateMovies(updatedMovies)
             });
 
 
         }
-
-
     }
+
+
+
 
 
     async function populateMovies(arr) {
         html = '';
         for (let i = 0; i < arr.length; i++) {
 
-            html += `<div class="row" id="movies">
+            html += `<div class="row" id="movies" data-movie="${arr[i].id}">
                     <div class="column" id="movie${i}">
                     <button id="deleteMovieBtn${i}">X</button>
                         <div id="title">${arr[i].title}</div>
@@ -107,11 +129,11 @@
                     <div class="column hidden" id="update-form${i}">
                         <form>
                            
-                            <input type="text" id="update-title" name="title" placeholder="Change Title..."><br>
+                            <input type="text" id="update-title${i}" name="title" placeholder="Change Title..."><br>
                            
-                            <input type="text" id="update-genres" name="genres" placeholder="Change genres..."><br>
+                            <input type="text" id="update-genres${i}" name="genres" placeholder="Change genres..."><br>
                                  
-                            <input type="text" id="update-actors" name="actors" placeholder="Change actors..."><br><br>
+                            <input type="text" id="update-actors${i}" name="actors" placeholder="Change actors..."><br><br>
         
                             <input type="submit" value="Update Movie" id="updateMovie${i}">
                             
