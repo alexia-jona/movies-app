@@ -16,7 +16,7 @@
         }
     }
 
-let updatedMovies;
+    let updatedMovies;
     $('#submitMovie').on('click', async function (e) {
         e.preventDefault();
         // makeMovieObj();
@@ -34,7 +34,6 @@ let updatedMovies;
         $('#input-actors').val('');
 
 
-
         removeMovie(movies);
         editMovie(movies);
 
@@ -42,62 +41,52 @@ let updatedMovies;
     });
 
 
-
     removeMovie(movies);
     editMovie(movies);
 
 
-
 ////////// FUNCTIONALITY FUNCTIONS //////////////
 
-function removeMovie(arr)
-{
-    for (let i = 0; i < arr.length; i++) {
-        $(`#deleteMovieBtn${i}`).on('click', async function (e) {
-            e.preventDefault()
+    function removeMovie(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            $(`#deleteMovieBtn${i}`).on('click', async function (e) {
+                e.preventDefault()
 
-            console.log(i)
-            let deleteCheck = confirm('Are you sure you wish to delete this movie?');
+                console.log(i)
+                let deleteCheck = confirm('Are you sure you wish to delete this movie?');
 
-            if(deleteCheck)
-            {
-                await deleteMovie(arr[i]);
-                console.log(deleteCheck);
-                location.reload();
-            }
+                if (deleteCheck) {
+                    await deleteMovie(arr[i]);
+                    console.log(deleteCheck);
+                    location.reload();
+                }
 
 
-        })
-    }
-}
-
-
-function editMovie(arr)
-{
-    for(let i = 0; i < arr.length; i++)
-    {
-        $(`#updateMovieBtn${i}`).on('click', function(e)
-        {
-            e.preventDefault();
-            $(`#movie${i}`).toggleClass('hidden');
-            $(`#update-form${i}`).toggleClass('hidden');
-
-        });
-         $(`#updateMovie${i}`).on('click', function(e)
-        {
-            e.preventDefault();
-            $(`#movie${i}`).toggleClass('hidden');
-            $(`#update-form${i}`).toggleClass('hidden');
-
-        });
-
-
-
+            })
+        }
     }
 
 
-}
+    function editMovie(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            $(`#updateMovieBtn${i}`).on('click', function (e) {
+                e.preventDefault();
+                $(`#movie${i}`).toggleClass('hidden');
+                $(`#update-form${i}`).toggleClass('hidden');
 
+            });
+            $(`#updateMovie${i}`).on('click', function (e) {
+                e.preventDefault();
+                $(`#movie${i}`).toggleClass('hidden');
+                $(`#update-form${i}`).toggleClass('hidden');
+
+            });
+
+
+        }
+
+
+    }
 
 
     async function populateMovies(arr) {
