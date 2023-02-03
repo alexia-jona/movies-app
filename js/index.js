@@ -94,9 +94,9 @@
                         actors: $(`#update-actors${i}`).val()
                     }
                 console.log(updateMovieObj)
-                console.log($(`#update-title${i}`).val())
-                console.log($(`#update-genres${i}`).val())
-                console.log($(`#update-actors${i}`).val())
+                // console.log($(`#update-title${i}`).val())
+                // console.log($(`#update-genres${i}`).val())
+                // console.log($(`#update-actors${i}`).val())
                 await updateMovie(updateMovieObj)
                 console.log(arr)
                 updatedMovies = await getUpdatedMovies()
