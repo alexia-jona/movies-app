@@ -77,7 +77,7 @@
         }
 
     function editMovie(arr) {
-        removeMovie(arr);
+        // removeMovie(arr);
         for (let i = 0; i < arr.length; i++) {
             $(`#updateMovie${i}`).on('click', async function (e) {
                 e.preventDefault();
