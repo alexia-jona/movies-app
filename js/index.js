@@ -5,9 +5,8 @@
 
     let movies = await getMovies();
     let html = '';
-    console.log(movies);
 
-    populateMovies();
+    populateMovies(movies);
 
     const makeMovieObj = () => {
         return {
@@ -17,27 +16,45 @@
         }
     }
 
+    async function fetchMovies() {
+        const response = fetch('/movies');
+        console.log(response)
+    }
+let updatedMovies;
     $('#submitMovie').on('click', async function (e) {
-
-        html = '';
-
         e.preventDefault();
         // makeMovieObj();
+        let addedMovie = await addMovie(makeMovieObj());
 
-        let addedMovies = await addMovie(makeMovieObj());
+        updatedMovies = await getUpdatedMovies()
+        movies = updatedMovies
         console.log(makeMovieObj());
-        let allMovies = await populateMovies();
+        await populateMovies(movies);
+        console.log(updatedMovies);
+
     });
 
-    async function populateMovies() {
-        for (let movie of movies) {
+
+
+    for (let i = 0; i < movies.length; i++) {
+        $(`#deleteMovieBtn${i}`).on('click', async function (e) {
+            e.preventDefault()
+                deleteMovie(movies[i])
+            console.log(i)
+        })
+    }
+
+    async function populateMovies(arr) {
+        html = '';
+        for (let i = 0; i < arr.length; i++) {
 
             html += `<div class="row" id="movie">
                     <div class="column">
-                        <div id="title">${movie.title}</div>
+                    <button id="deleteMovieBtn${i}" onclick="">X</button>
+                        <div id="title">${arr[i].title}</div>
                         <div id="movie-poster"></div>
-                        <div id="genres">${movie.genre}</div>
-                        <div id="actors">${movie.actors}</div>
+                        <div id="genres">${arr[i].genre}</div>
+                        <div id="actors">${arr[i].actors}</div>
                     </div>
                     
                  </div>`

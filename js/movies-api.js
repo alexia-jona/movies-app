@@ -100,3 +100,15 @@ const deleteMovie = async (movie) => {
         console.error(e);
     }
 }
+
+const getUpdatedMovies = async () => {
+    const url = '/movies';
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    };
+    let response = await db.fetch(url, options);
+    return await response.json();
+}
