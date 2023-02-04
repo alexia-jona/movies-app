@@ -24,7 +24,7 @@
 
         updatedMovies = await getUpdatedMovies()
         movies = updatedMovies
-        console.log(makeMovieObj());
+        console.log(makeMovieObj() + "here");
         await populateMovies(movies);
         console.log(updatedMovies, 'updated movies');
         console.log(movies, 'OG movies');
@@ -33,22 +33,17 @@
         $('#input-genres').val('');
         $('#input-actors').val('');
 
-
-        removeMovie(movies);
+        addListeners(movies);
         editMovie(movies);
-
-
 
     });
 
-
-    removeMovie(movies);
+    console.log((movies));
     editMovie(movies);
-
 
 ////////// FUNCTIONALITY FUNCTIONS //////////////
 
-    function removeMovie(arr) {
+    function addListeners(arr) {
         for (let i = 0; i < arr.length; i++) {
             $(`#deleteMovieBtn${i}`).on('click', async function (e) {
                 e.preventDefault()
@@ -61,18 +56,12 @@
                     console.log(deleteCheck);
                     updatedMovies = await getUpdatedMovies()
                     await populateMovies(updatedMovies)
+
                     // location.reload()
                 }
-
-
             })
         }
-        // editMovie(arr);
-    }
-
-
-
-    /////// CHECKING FOR BUTTON CLICK ON UPDATE ////////
+        editMovie(arr);
 
         for (let i = 0; i < movies.length; i++) {
             $(`#updateMovieBtn${i}`).on('click', function (e) {
@@ -82,9 +71,11 @@
                 // editMovie(movies);
             });
         }
+    }
 
+    /////// CHECKING FOR BUTTON CLICK ON UPDATE ////////
 
-        ////// UPDATE MOVIE (PUT) //////////
+    ////// UPDATE MOVIE (PUT) //////////
 
     function editMovie(arr) {
         for (let i = 0; i < arr.length; i++) {
@@ -94,7 +85,6 @@
                 console.log(i)
                 $(`#movie${i}`).toggleClass('hidden');
                 $(`#update-form${i}`).toggleClass('hidden');
-
                 let updateMovieObj =
                     {
                         id: movieId,
@@ -109,7 +99,7 @@
                 await updateMovie(updateMovieObj)
                 console.log(arr)
                 updatedMovies = await getUpdatedMovies()
-                populateMovies(updatedMovies)
+                populateMovies(updatedMovies).then(addListeners)
 
                 // location.reload();
 
@@ -118,40 +108,26 @@
         }
     }
 
-
-
-
-
     async function populateMovies(arr) {
         html = '';
         for (let i = 0; i < arr.length; i++) {
-
             html += `<div class="row" id="movies" data-movie="${arr[i].id}">
-                    <div class="column" id="movie${i}">
-                    <button id="deleteMovieBtn${i}">X</button>
-                        <div id="title">Title: ${arr[i].title}</div>
-                        <div id="movie-poster"></div>
-                        <div id="genres">Genre(s): ${arr[i].genre}</div>
-                        <div id="actors">Actor(s): ${arr[i].actors}</div>
-                    <button id="updateMovieBtn${i}" onclick="">Update</button>
-                              
-                         
-                    </div>
-                    <div class="column hidden" id="update-form${i}">
-                        <form>
-                           
-                            <input type="text" id="update-title${i}" name="title" placeholder="Change Title..."><br>
-                           
-                            <input type="text" id="update-genres${i}" name="genres" placeholder="Change genres..."><br>
-                                 
-                            <input type="text" id="update-actors${i}" name="actors" placeholder="Change actors..."><br><br>
-        
-                            <input type="submit" value="Update Movie" id="updateMovie${i}">
-                            
-                        </form>
-                    
-                    </div> <!---- FORM COLUMN ------>
-                    
+                        <div class="column" id="movie${i}">
+                            <button id="deleteMovieBtn${i}">X</button>
+                            <div id="title">Title: ${arr[i].title}</div>
+                            <div id="movie-poster"></div>
+                            <div id="genres">Genre(s): ${arr[i].genre}</div>
+                            <div id="actors">Actor(s): ${arr[i].actors}</div>
+                            <button id="updateMovieBtn${i}" onclick="">Update</button>
+                        </div>
+                        <div class="column hidden" id="update-form${i}">
+                            <form>
+                                <input type="text" id="update-title${i}" name="title" placeholder="Change Title..."><br>
+                                <input type="text" id="update-genres${i}" name="genres" placeholder="Change genres..."><br>
+                                <input type="text" id="update-actors${i}" name="actors" placeholder="Change actors..."><br><br>
+                                <input type="submit" value="Update Movie" id="updateMovie${i}">
+                            </form>
+                        </div> <!---- FORM COLUMN ------>
                  </div>`
         }
         $('#movies').html(html);
