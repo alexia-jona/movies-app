@@ -60,7 +60,7 @@
                 }
             })
         }
-        editMovie(movies);
+        // editMovie(movies);
 
         for (let i = 0; i < movies.length; i++) {
             $(`#updateMovieBtn${i}`).on('click', function (e) {
@@ -72,6 +72,27 @@
         }
     }
 
+
+    /////// SEARCH BAR ////////////////
+
+    let searchedMovie;
+    let changedMovie;
+    $('#searchBtn').on('click', async function (e) {
+        e.preventDefault();
+
+        searchedMovie = movies.filter(movie => movie.title.toLowerCase() === $('#movie-search').val().toLowerCase());
+        changedMovie = await getMovie(searchedMovie);
+
+        console.log(searchedMovie);
+        // console.log(movies)
+        console.log(changedMovie);
+
+        html = '';
+        await populateMovies(searchedMovie).then(addListeners);
+
+        editMovie(searchedMovie);
+
+    })
 
 
     /////// CHECKING FOR BUTTON CLICK ON UPDATE ////////
@@ -98,9 +119,20 @@
                 // console.log($(`#update-genres${i}`).val())
                 // console.log($(`#update-actors${i}`).val())
                 await updateMovie(updateMovieObj)
-                console.log(arr)
+                console.log(arr);
+
+                // if(arr.length === 1)
+                // {
+                // updatedMovies = await getUpdatedMovies()
+                // await populateMovies(searchedMovie).then(addListeners);
+
+                // }
+                // else
+                // {
                 updatedMovies = await getUpdatedMovies()
                 await populateMovies(updatedMovies).then(addListeners);
+                // }
+
 
             });
         }
@@ -131,6 +163,65 @@
         }
         $('#movies').html(html);
     }
+
+
+///// MOVIE POSTER GENERATOR FROM https://codepen.io/pixelnik/pen/pgWQBZ ////////
+
+    //console.log($.getJSON("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb"));
+
+
+    for (let i = 0; i < movies.length; i++)
+    {
+
+
+        $('#movies[i].title').focus(function () {
+            let full = $("#movie-poster").has("img").length ? true : false;
+            if (full === false) {
+                $('#movie-poster').empty();
+            }
+        });
+
+        function getPoster(){
+
+            let film = $('#movies[i].title').val();
+
+            if (film === '') {
+
+                $('#movie-poster').html('<div class="alert"><strong>Oops!</strong> THERE IS NO TITLE TO SEARCH FOR </div>');
+
+            } else {
+
+                $('#movie-poster').html('<div class="alert"><strong>Loading...</strong></div>');
+
+                $.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + film + "&callback=?", function (json) {
+                    if (json !== "Nothing found.") {
+                        console.log(json);
+                        $('#movie-poster').html('<img src=' + json.results[0].poster_path + '\" class=\"img-responsive\" >');
+                    } else {
+                        $.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=goonies&callback=?", function (json) {
+
+                            console.log(json);
+                            $('#movie-poster').html('<div class="alert"><p>We\'re afraid nothing was found for that search.</p></div><img id="thePoster" src="http://image.tmdb.org/t/p/w500/' + json[0].poster_path + ' class="img-responsive" />');
+                        });
+                    }
+                });
+
+            }
+
+            return false;
+        }
+
+        getPoster();
+        // $('#term').keyup(function (event) {
+        //     if (event.keyCode == 13) {
+        //         getPoster();
+        //     }
+        // });
+
+
+}
+
+
 
 
 })();
