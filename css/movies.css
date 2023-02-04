@@ -21,6 +21,8 @@
 
 .column {
     /*display: flex;*/
+    height: 20em;
+    width: 18em;
 }
 
 .hidden
@@ -34,4 +36,5 @@
 #movie {
     display: flex;
     margin: 1em 0;
+
 }
