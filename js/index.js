@@ -167,14 +167,14 @@
 
 ///// MOVIE POSTER GENERATOR FROM https://codepen.io/pixelnik/pen/pgWQBZ ////////
 
-    //console.log($.getJSON("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb"));
+    //console.log($.getJSON("https://api.themoviedb.org/3/discover/movie?api_key=${keys.TMDB_API}"));
 
 
     for (let i = 0; i < movies.length; i++)
     {
 
 
-        $('#movies[i].title').focus(function () {
+        $('#title').focus(function () {
             let full = $("#movie-poster").has("img").length ? true : false;
             if (full === false) {
                 $('#movie-poster').empty();
@@ -183,7 +183,7 @@
 
         function getPoster(){
 
-            let film = $('#movies[i].title').val();
+            let film = movies[i].title;
 
             if (film === '') {
 
@@ -193,12 +193,12 @@
 
                 $('#movie-poster').html('<div class="alert"><strong>Loading...</strong></div>');
 
-                $.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + film + "&callback=?", function (json) {
+                $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB_API}&query=${film}&callback=?`, function (json) {
                     if (json !== "Nothing found.") {
                         console.log(json);
                         $('#movie-poster').html('<img src=' + json.results[0].poster_path + '\" class=\"img-responsive\" >');
                     } else {
-                        $.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=goonies&callback=?", function (json) {
+                        $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB_API}&query=goonies&callback=?`, function (json) {
 
                             console.log(json);
                             $('#movie-poster').html('<div class="alert"><p>We\'re afraid nothing was found for that search.</p></div><img id="thePoster" src="http://image.tmdb.org/t/p/w500/' + json[0].poster_path + ' class="img-responsive" />');
