@@ -33,18 +33,19 @@
         $('#input-genres').val('');
         $('#input-actors').val('');
 
-        addListeners(movies);
+        addListeners();
         editMovie(movies);
 
     });
 
     console.log((movies));
     editMovie(movies);
+    addListeners();
 
 ////////// FUNCTIONALITY FUNCTIONS //////////////
 
-    function addListeners(arr) {
-        for (let i = 0; i < arr.length; i++) {
+    function addListeners() {
+        for (let i = 0; i < movies.length; i++) {
             $(`#deleteMovieBtn${i}`).on('click', async function (e) {
                 e.preventDefault()
 
@@ -52,7 +53,7 @@
                 let deleteCheck = confirm('Are you sure you wish to delete this movie?');
 
                 if (deleteCheck) {
-                    await deleteMovie(arr[i]);
+                    await deleteMovie(movies[i]);
                     console.log(deleteCheck);
                     updatedMovies = await getUpdatedMovies()
                     await populateMovies(updatedMovies)
@@ -61,7 +62,7 @@
                 }
             })
         }
-        editMovie(arr);
+        editMovie(movies);
 
         for (let i = 0; i < movies.length; i++) {
             $(`#updateMovieBtn${i}`).on('click', function (e) {
@@ -72,6 +73,8 @@
             });
         }
     }
+
+
 
     /////// CHECKING FOR BUTTON CLICK ON UPDATE ////////
 
@@ -99,13 +102,14 @@
                 await updateMovie(updateMovieObj)
                 console.log(arr)
                 updatedMovies = await getUpdatedMovies()
-                populateMovies(updatedMovies).then(addListeners)
+                await populateMovies(updatedMovies).then(addListeners);
 
                 // location.reload();
 
                 // removeMovie(arr);
             });
         }
+
     }
 
     async function populateMovies(arr) {
@@ -122,9 +126,9 @@
                         </div>
                         <div class="column hidden" id="update-form${i}">
                             <form>
-                                <input type="text" id="update-title${i}" name="title" placeholder="Change Title..."><br>
-                                <input type="text" id="update-genres${i}" name="genres" placeholder="Change genres..."><br>
-                                <input type="text" id="update-actors${i}" name="actors" placeholder="Change actors..."><br><br>
+                                <input type="text" id="update-title${i}" name="title" placeholder="Change Title..." value="${arr[i].title}"><br>
+                                <input type="text" id="update-genres${i}" name="genres" placeholder="Change genres..." value="${arr[i].genre}"><br>
+                                <input type="text" id="update-actors${i}" name="actors" placeholder="Change actors..." value="${arr[i].actors}"><br><br>
                                 <input type="submit" value="Update Movie" id="updateMovie${i}">
                             </form>
                         </div> <!---- FORM COLUMN ------>
