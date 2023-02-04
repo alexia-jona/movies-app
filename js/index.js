@@ -44,7 +44,7 @@
 
 ////////// FUNCTIONALITY FUNCTIONS //////////////
 
-    function addListeners() {
+    function addListeners() { //I think the reason why it was not working was because there was an (arr) parameter in this function and it wasn't reading the length, I took it out and replaced arr with movies in all the loops and then I think that fixed it :D
         for (let i = 0; i < movies.length; i++) {
             $(`#deleteMovieBtn${i}`).on('click', async function (e) {
                 e.preventDefault()
