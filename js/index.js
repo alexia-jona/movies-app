@@ -56,9 +56,7 @@
                     await deleteMovie(movies[i]);
                     console.log(deleteCheck);
                     updatedMovies = await getUpdatedMovies()
-                    await populateMovies(updatedMovies)
-
-                    // location.reload()
+                    await populateMovies(updatedMovies).then(addListeners)
                 }
             })
         }
@@ -104,9 +102,6 @@
                 updatedMovies = await getUpdatedMovies()
                 await populateMovies(updatedMovies).then(addListeners);
 
-                // location.reload();
-
-                // removeMovie(arr);
             });
         }
 
