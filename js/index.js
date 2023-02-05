@@ -79,7 +79,6 @@
     let changedMovie;
     $('#searchBtn').on('click', async function (e) {
         e.preventDefault();
-
         searchedMovie = movies.filter(movie => movie.title.toLowerCase() === $('#movie-search').val().toLowerCase());
         changedMovie = await getMovie(searchedMovie);
 
@@ -89,11 +88,8 @@
 
         html = '';
         await populateMovies(searchedMovie).then(addListeners);
-
         editMovie(searchedMovie);
-
     })
-
 
     /////// CHECKING FOR BUTTON CLICK ON UPDATE ////////
 
@@ -132,11 +128,8 @@
                 updatedMovies = await getUpdatedMovies()
                 await populateMovies(updatedMovies).then(addListeners);
                 // }
-
-
             });
         }
-
     }
 
     async function populateMovies(arr) {
@@ -164,16 +157,11 @@
         $('#movies').html(html);
     }
 
-
 ///// MOVIE POSTER GENERATOR FROM https://codepen.io/pixelnik/pen/pgWQBZ ////////
 
     //console.log($.getJSON("https://api.themoviedb.org/3/discover/movie?api_key=${keys.TMDB_API}"));
-
-
     for (let i = 0; i < movies.length; i++)
     {
-
-
         $('#title').focus(function () {
             let full = $("#movie-poster").has("img").length ? true : false;
             if (full === false) {
@@ -182,15 +170,11 @@
         });
 
         function getPoster(){
-
             let film = movies[i].title;
 
             if (film === '') {
-
                 $('#movie-poster').html('<div class="alert"><strong>Oops!</strong> THERE IS NO TITLE TO SEARCH FOR </div>');
-
             } else {
-
                 $('#movie-poster').html('<div class="alert"><strong>Loading...</strong></div>');
 
                 $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB_API}&query=${film}&callback=?`, function (json) {
@@ -199,15 +183,12 @@
                         $('#movie-poster').html('<img src=' + json.results[0].poster_path + '\" class=\"img-responsive\" >');
                     } else {
                         $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB_API}&query=goonies&callback=?`, function (json) {
-
                             console.log(json);
                             $('#movie-poster').html('<div class="alert"><p>We\'re afraid nothing was found for that search.</p></div><img id="thePoster" src="http://image.tmdb.org/t/p/w500/' + json[0].poster_path + ' class="img-responsive" />');
                         });
                     }
                 });
-
             }
-
             return false;
         }
 
