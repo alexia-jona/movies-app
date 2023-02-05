@@ -162,12 +162,12 @@
     //console.log($.getJSON("https://api.themoviedb.org/3/discover/movie?api_key=${keys.TMDB_API}"));
     for (let i = 0; i < movies.length; i++)
     {
-        $('#title').focus(function () {
-            let full = $("#movie-poster").has("img").length ? true : false;
-            if (full === false) {
-                $('#movie-poster').empty();
-            }
-        });
+        // $('#title').focus(function () {
+        //     let full = $("#movie-poster").has("img").length ? true : false;
+        //     if (full === false) {
+        //         $('#movie-poster').empty();
+        //     }
+        // });
 
         function getPoster(){
             let film = movies[i].title;
@@ -180,7 +180,7 @@
                 $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB_API}&query=${film}&callback=?`, function (json) {
                     if (json !== "Nothing found.") {
                         console.log(json);
-                        $('#movie-poster').html('<img src=' + json.results[0].poster_path + '\" class=\"img-responsive\" >');
+                        $('#movie-poster').html(`<img src="https://image.tmdb.org/t/p/original/${json.results[0].poster_path}" class="img-responsive" \>`);
                     } else {
                         $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB_API}&query=goonies&callback=?`, function (json) {
                             console.log(json);

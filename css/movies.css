@@ -31,6 +31,12 @@
 }
 
 
+.img-responsive {
+    width: 90vw;
+    max-width:500px;
+}
+
+
 
 /****** ID'S ***********/
 #movie {
