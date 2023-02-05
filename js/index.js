@@ -70,6 +70,8 @@
                 // editMovie(movies);
             });
         }
+
+        // getPoster();
     }
 
 
@@ -129,6 +131,8 @@
                 await populateMovies(updatedMovies).then(addListeners);
                 // }
             });
+
+
         }
     }
 
@@ -170,6 +174,7 @@
         });
 
         function getPoster(){
+
             let film = movies[i].title;
 
             if (film === '') {
