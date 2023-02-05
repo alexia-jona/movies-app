@@ -31,15 +31,18 @@
 }
 
 
-.img-responsive {
-    width: auto;
-    max-width:3em;
-}
+/*.img-responsive {*/
+/*    width: auto;*/
+/*    max-width:3em;*/
+/*}*/
 
-img
+.movie-poster
 {
+    display: flex;
+    margin:auto;
+    align-content: center;
     width: auto;
-    max-width: 6em;
+    max-width: 5em;
 }
 
 

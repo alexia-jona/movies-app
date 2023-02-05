@@ -135,11 +135,11 @@
     async function populateMovies(arr) {
         html = '';
         for (let i = 0; i < arr.length; i++) {
-            html += `<div class="row border border-primery m-2" id="movies" data-movie="${arr[i].id}">
+            html += `<div class="row border border-primary m-2" id="movies" data-movie="${arr[i].id}">
                         <div class="column" id="movie${i}">
                             <div class="d-flex align-items-end flex-column"><button id="deleteMovieBtn${i}" class="btn border border-primery">X</button></div>
                             <div id="title${i}">Title: ${arr[i].title}</div>
-                            <div id="movie-poster${i}"></div>
+                            <div id="movie-poster${i}" class="movie-poster"></div>
                             <div id="genres">Genre(s): ${arr[i].genre}</div>
                             <div id="actors">Actor(s): ${arr[i].actors}</div>
                             <div class="d-flex align-items-end"><button id="updateMovieBtn${i}" class="">Update</button></div>
@@ -180,7 +180,7 @@
                 $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB_API}&query=${film}&callback=?`, function (json) {
                     if (json !== "Nothing found.") {
                         console.log(json);
-                        $(`#movie-poster${i}`).html(`<img src="https://image.tmdb.org/t/p/original/${json.results[0].poster_path}" \>`);
+                        $(`#movie-poster${i}`).html(`<img src="https://image.tmdb.org/t/p/original/${json.results[0].poster_path}" class="movie-poster"\>`);
                     } else {
                         $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB_API}&query=goonies&callback=?`, function (json) {
                             console.log(json);
