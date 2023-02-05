@@ -189,7 +189,7 @@
                     } else {
                         $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB_API}&query=goonies&callback=?`, function (json) {
                             console.log(json);
-                            $(`#movie-poster${i}`).html('<div class="alert"><p>We\'re afraid nothing was found for that search.</p></div><img id="thePoster" src="http://image.tmdb.org/t/p/w500/' + json[0].poster_path + ' class="img-responsive" />');
+                            $(`#movie-poster${i}`).html('<div class="alert"><p>We\'re afraid nothing was found for that search.</p></div><img id="thePoster" src="http://image.tmdb.org/t/p/w500/" '+ json[0].poster_path + ' class="movie-poster" />');
                         });
                     }
                 });
