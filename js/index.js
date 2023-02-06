@@ -19,59 +19,50 @@
     let updatedMovies;
     $('#submitMovie').on('click', async function (e) {
         e.preventDefault();
-        // makeMovieObj();
         let addedMovie = await addMovie(makeMovieObj());
 
         updatedMovies = await getUpdatedMovies()
         movies = updatedMovies
-        console.log(makeMovieObj() + "here");
         await populateMovies(movies);
-        console.log(updatedMovies, 'updated movies');
-        console.log(movies, 'OG movies');
 
         $('#input-title').val('');
         $('#input-genres').val('');
         $('#input-actors').val('');
 
         addListeners();
+        posterOnLoad(movies);
         editMovie(movies);
 
     });
 
-    console.log((movies));
     editMovie(movies);
     addListeners();
 
 ////////// FUNCTIONALITY FUNCTIONS //////////////
 
-    function addListeners() { //I think the reason why it was not working was because there was an (arr) parameter in this function and it wasn't reading the length, I took it out and replaced arr with movies in all the loops and then I think that fixed it :D
+    function addListeners() {
         for (let i = 0; i < movies.length; i++) {
             $(`#deleteMovieBtn${i}`).on('click', async function (e) {
                 e.preventDefault()
 
-                console.log(i)
                 let deleteCheck = confirm('Are you sure you wish to delete this movie?');
 
                 if (deleteCheck) {
                     await deleteMovie(movies[i]);
-                    console.log(deleteCheck);
                     updatedMovies = await getUpdatedMovies()
                     await populateMovies(updatedMovies).then(addListeners)
                 }
+                renderPosters(updatedMovies)
             })
         }
-        // editMovie(movies);
 
         for (let i = 0; i < movies.length; i++) {
             $(`#updateMovieBtn${i}`).on('click', function (e) {
                 e.preventDefault();
                 $(`#movie${i}`).toggleClass('hidden');
                 $(`#update-form${i}`).toggleClass('hidden');
-                // editMovie(movies);
             });
         }
-
-        // getPoster();
     }
 
 
@@ -84,25 +75,19 @@
         searchedMovie = movies.filter(movie => movie.title.toLowerCase() === $('#movie-search').val().toLowerCase());
         changedMovie = await getMovie(searchedMovie);
 
-        console.log(searchedMovie);
-        // console.log(movies)
-        console.log(changedMovie);
-
         html = '';
         await populateMovies(searchedMovie).then(addListeners);
         editMovie(searchedMovie);
+        renderPosters(searchedMovie)
     })
 
     /////// CHECKING FOR BUTTON CLICK ON UPDATE ////////
-
-    ////// UPDATE MOVIE (PUT) //////////
 
     function editMovie(arr) {
         for (let i = 0; i < arr.length; i++) {
             $(`#updateMovie${i}`).on('click', async function (e) {
                 e.preventDefault();
                 let movieId = $(this).parents('[data-movie]').attr('data-movie');
-                console.log(i)
                 $(`#movie${i}`).toggleClass('hidden');
                 $(`#update-form${i}`).toggleClass('hidden');
                 let updateMovieObj =
@@ -112,27 +97,11 @@
                         genre: $(`#update-genres${i}`).val(),
                         actors: $(`#update-actors${i}`).val()
                     }
-                console.log(updateMovieObj)
-                // console.log($(`#update-title${i}`).val())
-                // console.log($(`#update-genres${i}`).val())
-                // console.log($(`#update-actors${i}`).val())
                 await updateMovie(updateMovieObj)
-                console.log(arr);
-
-                // if(arr.length === 1)
-                // {
-                // updatedMovies = await getUpdatedMovies()
-                // await populateMovies(searchedMovie).then(addListeners);
-
-                // }
-                // else
-                // {
                 updatedMovies = await getUpdatedMovies()
                 await populateMovies(updatedMovies).then(addListeners);
-                // }
+                renderPosters(updatedMovies);
             });
-
-
         }
     }
 
@@ -140,7 +109,7 @@
         html = '';
         for (let i = 0; i < arr.length; i++) {
             html += `<div class="row border border-primary m-2" id="movies" data-movie="${arr[i].id}">
-                        <div class="column" id="movie${i}">
+                        <div class="column " id="movie${i}">
                             <div class="d-flex align-items-end flex-column"><button id="deleteMovieBtn${i}" class="btn border border-primery">X</button></div>
                             <div id="title${i}">Title: ${arr[i].title}</div>
                             <div id="movie-poster${i}" class="movie-poster"></div>
@@ -162,21 +131,40 @@
     }
 
 ///// MOVIE POSTER GENERATOR FROM https://codepen.io/pixelnik/pen/pgWQBZ ////////
-
-    //console.log($.getJSON("https://api.themoviedb.org/3/discover/movie?api_key=${keys.TMDB_API}"));
-    for (let i = 0; i < movies.length; i++)
-    {
-        $(`#title${i}`).focus(function () {
-            let full = $(`#movie-poster${i}`).has("img").length ? true : false;
-            if (full === false) {
-                $(`#movie-poster${i}`).empty();
-            }
-        });
-
-        function getPoster(){
-
+    function posterOnLoad(arg) {
+        for (let i = 0; i < arg.length; i++) {
+            $(`#title${i}`).focus(function () {
+                let full = $(`#movie-poster${i}`).has("img").length ? true : false;
+                if (full === false) {
+                    $(`#movie-poster${i}`).empty();
+                }
+            });
             let film = movies[i].title;
+            $(`#movie-poster${i}`).html('<div class="alert"><strong>Loading...</strong></div>');
+            $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB_API}&query=${film}&callback=?`, function (json) {
+                if (json !== "Nothing found.") {
+                    $(`#movie-poster${i}`).html(`<img src="https://image.tmdb.org/t/p/original/${json.results[0].poster_path}" class="movie-poster"\>`);
+                } else {
+                    $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB_API}&query=goonies&callback=?`, function (json) {
+                        $(`#movie-poster${i}`).html('<div class="alert"><p>We\'re afraid nothing was found for that search.</p></div><img id="thePoster" src="http://image.tmdb.org/t/p/w500/" ' + json[0].poster_path + ' class="movie-poster" />');
+                    });
+                }
+            });
+        }
+    }
 
+    posterOnLoad(movies)
+
+    function renderPosters(updatedMovies) {
+        for (let i = 0; i < updatedMovies.length; i++) {
+            $(`#title${i}`).focus(function () {
+                let full = $(`#movie-poster${i}`).has("img").length ? true : false;
+                if (full === false) {
+                    $(`#movie-poster${i}`).empty();
+                }
+            });
+            let film = updatedMovies[i].title;
+            console.log(film);
             if (film === '') {
                 $(`#movie-poster${i}`).html('<div class="alert"><strong>Oops!</strong> THERE IS NO TITLE TO SEARCH FOR </div>');
             } else {
@@ -184,30 +172,15 @@
 
                 $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB_API}&query=${film}&callback=?`, function (json) {
                     if (json !== "Nothing found.") {
-                        console.log(json);
                         $(`#movie-poster${i}`).html(`<img src="https://image.tmdb.org/t/p/original/${json.results[0].poster_path}" class="movie-poster"\>`);
                     } else {
                         $.getJSON(`https://api.themoviedb.org/3/search/movie?api_key=${keys.TMDB_API}&query=goonies&callback=?`, function (json) {
-                            console.log(json);
-                            $(`#movie-poster${i}`).html('<div class="alert"><p>We\'re afraid nothing was found for that search.</p></div><img id="thePoster" src="http://image.tmdb.org/t/p/w500/" '+ json[0].poster_path + ' class="movie-poster" />');
+                            $(`#movie-poster${i}`).html('<div class="alert"><p>We\'re afraid nothing was found for that search.</p></div><img id="thePoster" src="http://image.tmdb.org/t/p/w500/" ' + json[0].poster_path + ' class="movie-poster" />');
                         });
                     }
                 });
             }
-            return false;
         }
-
-        getPoster();
-        // $('#term').keyup(function (event) {
-        //     if (event.keyCode == 13) {
-        //         getPoster();
-        //     }
-        // });
-
-
-}
-
-
-
+    }
 
 })();
