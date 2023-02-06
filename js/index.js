@@ -59,7 +59,7 @@
         for (let i = 0; i < movies.length; i++) {
             $(`#updateMovieBtn${i}`).on('click', function (e) {
                 e.preventDefault();
-                $(`#movie${i}`).toggleClass('hidden');
+                $(`#movie-content${i}`).toggleClass('hidden');
                 $(`#update-form${i}`).toggleClass('hidden');
             });
         }
@@ -88,7 +88,7 @@
             $(`#updateMovie${i}`).on('click', async function (e) {
                 e.preventDefault();
                 let movieId = $(this).parents('[data-movie]').attr('data-movie');
-                $(`#movie${i}`).toggleClass('hidden');
+                $(`#movie-content${i}`).toggleClass('hidden');
                 $(`#update-form${i}`).toggleClass('hidden');
                 let updateMovieObj =
                     {
@@ -109,14 +109,14 @@
         html = '';
         for (let i = 0; i < arr.length; i++) {
             html += `<div class="carousel-item ${(i === 0) ? "active" : ""}" data-movie="${arr[i].id}"  id="movie${i}">
-<!--                        <div class="column >-->
-                            <div class="d-flex justify-content-center flex-column"><button id="deleteMovieBtn${i}" class="btn border border-primery">X</button></div>
-                            <div id="title${i}" class="d-flex justify-content-center">Title: ${arr[i].title}</div>
+                        <div class="movie-content" id="movie-content${i}">
+                            <div class="d-flex justify-content-center flex-column deleteMovieBtn"><input type="button" id="deleteMovieBtn${i}" class=" w-25 d-flex justify-content-center align-self-start" value="X"></div>
+                            <div id="title${i}" class="d-flex justify-content-center dotgothic">Title: ${arr[i].title}</div>
                             <div id="movie-poster${i}" class="movie-poster"></div>
-                            <div id="genres" class="d-flex justify-content-center">Genre(s): ${arr[i].genre}</div>
-                            <div id="actors" class="d-flex justify-content-center">Actor(s): ${arr[i].actors}</div>
+                            <div id="genres" class="d-flex justify-content-center dotgothic">Genre(s): ${arr[i].genre}</div>
+                            <div id="actors" class="d-flex justify-content-center dotgothic">Actor(s): ${arr[i].actors}</div>
                             <div class="d-flex justify-content-center"><button id="updateMovieBtn${i}" class="">Update</button></div>
-<!--                        </div>-->
+                        </div>
                         
                             <form class=" hidden" id="update-form${i}">
                                 <input type="text" id="update-title${i}" name="title" placeholder="Change Title..." value="${arr[i].title}"><br>

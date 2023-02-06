@@ -31,6 +31,7 @@ body {
 }
 
 
+
 /*.img-responsive {*/
 /*    width: auto;*/
 /*    max-width:3em;*/
@@ -42,7 +43,36 @@ body {
     margin:auto;
     align-content: center;
     width: auto;
-    max-width: 5em;
+    max-width: 15em;
+}
+
+
+
+.button
+{
+    display: flex;
+    justify-content: center;
+    margin: auto 0;
+
+    height: 2em;
+}
+
+.dotgothic
+{
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 2em;
+
+}
+
+input[type=button]
+{
+    font-family: 'Metamorphous', cursive;
+    font-weight: bold;
+    font-size: 3em;
+    background-color: beige;
+    border-radius: 25px;
+    color: #a82c3a;
+    border: none;
 }
 
 
@@ -52,4 +82,24 @@ body {
     display: flex;
     margin: 1em 0;
 
+}
+
+#myCarousel
+{
+    background-color: beige;
+    border-radius: 25px;
+    padding-bottom: 2em;
+}
+
+
+#header-text
+{
+    font-size: 3.5em;
+    font-family: 'Bungee Shade', cursive;
+    color: beige;
+}
+
+#navbar
+{
+    border-bottom: dashed 4px #e0d9ca;
 }
