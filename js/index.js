@@ -108,23 +108,23 @@
     async function populateMovies(arr) {
         html = '';
         for (let i = 0; i < arr.length; i++) {
-            html += `<div class="row border border-primary m-2" id="movies" data-movie="${arr[i].id}">
-                        <div class="column " id="movie${i}">
-                            <div class="d-flex align-items-end flex-column"><button id="deleteMovieBtn${i}" class="btn border border-primery">X</button></div>
-                            <div id="title${i}">Title: ${arr[i].title}</div>
+            html += `<div class="carousel-item ${(i === 0) ? "active" : ""}" data-movie="${arr[i].id}"  id="movie${i}">
+<!--                        <div class="column >-->
+                            <div class="d-flex justify-content-center flex-column"><button id="deleteMovieBtn${i}" class="btn border border-primery">X</button></div>
+                            <div id="title${i}" class="d-flex justify-content-center">Title: ${arr[i].title}</div>
                             <div id="movie-poster${i}" class="movie-poster"></div>
-                            <div id="genres">Genre(s): ${arr[i].genre}</div>
-                            <div id="actors">Actor(s): ${arr[i].actors}</div>
-                            <div class="d-flex align-items-end"><button id="updateMovieBtn${i}" class="">Update</button></div>
-                        </div>
-                        <div class="column hidden" id="update-form${i}">
-                            <form>
+                            <div id="genres" class="d-flex justify-content-center">Genre(s): ${arr[i].genre}</div>
+                            <div id="actors" class="d-flex justify-content-center">Actor(s): ${arr[i].actors}</div>
+                            <div class="d-flex justify-content-center"><button id="updateMovieBtn${i}" class="">Update</button></div>
+<!--                        </div>-->
+                        
+                            <form class=" hidden" id="update-form${i}">
                                 <input type="text" id="update-title${i}" name="title" placeholder="Change Title..." value="${arr[i].title}"><br>
                                 <input type="text" id="update-genres${i}" name="genres" placeholder="Change genres..." value="${arr[i].genre}"><br>
                                 <input type="text" id="update-actors${i}" name="actors" placeholder="Change actors..." value="${arr[i].actors}"><br><br>
                                 <input type="submit" value="Update Movie" id="updateMovie${i}">
                             </form>
-                        </div> <!---- FORM COLUMN ------>
+                       <!---- FORM COLUMN ------>
                  </div>`
         }
         $('#movies').html(html);

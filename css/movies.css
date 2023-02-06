@@ -1,8 +1,8 @@
 /*********** PAGE STRUCTURE ***************/
-/*body {*/
-/*    background-image: url("/images/starry-night-sky.jpg");*/
-/*    background-size: cover;*/
-/*}*/
+body {
+    background-image: url("/images/starry-night-sky.jpg");
+    background-size: cover;
+}
 
 .page-wrapper {
     display: flex;
