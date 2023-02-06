@@ -31,12 +31,6 @@ body {
 }
 
 
-
-/*.img-responsive {*/
-/*    width: auto;*/
-/*    max-width:3em;*/
-/*}*/
-
 .movie-poster
 {
     display: flex;
@@ -45,7 +39,6 @@ body {
     width: auto;
     max-width: 15em;
 }
-
 
 
 .button
@@ -66,9 +59,11 @@ body {
 
 input[type=button]
 {
+    display: flex;
+    justify-content: end;
     font-family: 'Metamorphous', cursive;
     font-weight: bold;
-    font-size: 3em;
+    font-size: 2em;
     background-color: beige;
     border-radius: 25px;
     color: #a82c3a;
@@ -84,9 +79,12 @@ input[type=button]
 
 }
 
-#myCarousel
+.myCarousel
 {
+    width: 30%;
+    height: auto;
     background-color: beige;
+    opacity: 80%;
     border-radius: 25px;
     padding-bottom: 2em;
 }
@@ -102,4 +100,9 @@ input[type=button]
 #navbar
 {
     border-bottom: dashed 4px #e0d9ca;
+}
+
+#movie-search {
+    background-color: beige;
+    opacity: 80%;
 }

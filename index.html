@@ -16,13 +16,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Metamorphous&display=swap" rel="stylesheet">
 
-<!-- DOTGOTHIC16-->
+    <!-- DOTGOTHIC16-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-
-
-
 
 
     <!--BootStrap-->
@@ -44,62 +41,44 @@
             </form>
         </nav>
     </div>
-<div id="myCarousel" class="carousel carousel-dark slide w-50 h-100" data-ride="carousel">
-    <div class=" carousel-inner" id="movies">
+    <div class="container col-12 d-flex flex-row justify-content-evenly">
+        <div id="myCarousel" class=" myCarousel carousel carousel-dark slide col-6" data-ride="carousel">
+            <div class=" carousel-inner" id="movies">
 
-        <!----- MOVIES BEING POPULATED IN JS ---------->
-
-    </div>
-
-<!--    CAROUSEL BUTTONS -->
-    <button class="carousel-control-prev button" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next button" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-
-
-
-
-
-    <div class="container bg-light w-25 mt-4">
-        <div class="row d-flex justify-content-center">
-            <div class="column d-flex justify-content-center">
-
-                <form>
-                    <label for="input-title">Title:</label><br>
-                    <input type="text" id="input-title" name="title"><br>
-
-                    <label for="input-genres">Genres:</label><br>
-                    <input type="text" id="input-genres" name="genres"><br>
-
-                    <label for="input-actors">Actor(s):</label><br>
-                    <input type="text" id="input-actors" name="actors"><br><br>
-
-                    <input type="submit" value="Submit" id="submitMovie">
-                </form>
-
-
-                <!--                <form id="update-form" class="hidden">-->
-                <!--                    <label for="update-title">Title:</label><br>-->
-                <!--                    <input type="text" id="update-title" name="title"><br>-->
-
-                <!--                    <label for="update-genres">Genres:</label><br>-->
-                <!--                    <input type="text" id="update-genres" name="genres"><br><br>-->
-
-                <!--                    <label for="update-actors">Actor(s):</label><br>-->
-                <!--                    <input type="text" id="update-actors" name="actors"><br><br>-->
-
-                <!--                    <input type="submit" value="Submit" id="updateMovie">-->
-                <!--                </form>-->
+                <!----- MOVIES BEING POPULATED IN JS ---------->
 
             </div>
+            <!--    CAROUSEL BUTTONS -->
+            <button class="carousel-control-prev button" type="button" data-bs-target="#myCarousel"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next button" type="button" data-bs-target="#myCarousel"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
+        <div class="myCarousel  w-25 mt-4 d-flex align-items-center justify-content-center col-6">
+            <div class="row d-flex justify-content-center">
+                <div class="column d-flex justify-content-center align-items-center ">
+                    <form>
+                        <label for="input-title">Title:</label><br>
+                        <input type="text" id="input-title" name="title"><br>
 
+                        <label for="input-genres">Genres:</label><br>
+                        <input type="text" id="input-genres" name="genres"><br>
+
+                        <label for="input-actors">Actor(s):</label><br>
+                        <input type="text" id="input-actors" name="actors"><br><br>
+
+                        <input type="submit" value="Submit" id="submitMovie">
+                    </form>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 </div>
