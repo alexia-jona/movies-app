@@ -10,17 +10,12 @@ body {
     align-items: center;
 }
 
-.container {
-    /*display: flex;*/
-}
-
 .row {
     display: flex;
     flex-direction: row;
 }
 
 .column {
-    /*display: flex;*/
     height: 20em;
     width: 18em;
 }
@@ -30,6 +25,7 @@ body {
     display: none;
 }
 
+/**************** Posters / Carousel ********************/
 
 .movie-poster
 {
@@ -39,8 +35,6 @@ body {
     width: auto;
     max-width: 18em;
 }
-
-
 
 .button
 {
@@ -56,7 +50,6 @@ body {
     margin: .55em 5em 0 0;
 }
 
-
 /****** TITLE TEXT ******/
 .dotgothic
 {
@@ -64,30 +57,8 @@ body {
     font-size: 2em;
     color: black;
     padding: 1em;
-    /*font-weight: bold;*/
-
 }
 
-/****** OTHER TEXT ******/
-.dotgothic2
-{
-    font-family: 'DotGothic16', sans-serif;
-    font-size: 1em;
-    font-weight: bold;
-}
-
-input[type=button]
-{
-    display: flex;
-    justify-content: end;
-    font-family: 'Metamorphous', cursive;
-    font-weight: bold;
-    font-size: 2em;
-    background-color: rgba(246, 245, 222, 0%);
-    border-radius: 25px;
-    color: #a82c3a;
-    border: none;
-}
 input[type=button]:hover
 {
     color: red;
@@ -111,11 +82,7 @@ input[type=button]:hover
 {
     width: 35em;
     height: auto;
-    /*background-color: rgba(246,	245, 222, 65%);!****  *OG BEIGE ****!*/
-    /*background-color: rgba(173, 204, 217, 65%); !***** LIGHTER BLUE *******!*/
-    /*background-color: rgba(170, 187, 194, 65%);*/ /**** LIGHT BLUE *****/
     background-color: rgba(240, 237, 235, 60%); /*** WHITE ****/
-    /*opacity: 70%;*/
     border-radius: 25px;
     padding-bottom: 2em;
 
@@ -124,8 +91,8 @@ input[type=button]:hover
 }
 
 .update-movie{
-    padding-left: 7em;
-    padding-top: 4em;
+    padding-left: 12em;
+    padding-top: 2em;
 
 }
 
@@ -138,6 +105,26 @@ input[type=button]:hover
     width: auto;
 }
 
+/****** OTHER TEXT ******/
+.dotgothic2
+{
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+input[type=button]
+{
+    display: flex;
+    justify-content: end;
+    font-family: 'Metamorphous', cursive;
+    font-weight: bold;
+    font-size: 2em;
+    background-color: rgba(246, 245, 222, 0%);
+    border-radius: 25px;
+    color: #a82c3a;
+    border: none;
+}
 
 /****** ID'S ***********/
 
@@ -183,8 +170,6 @@ input[type=button]:hover
 
 }
 
-
-
 /***** LOADING... *******/
 /***** FROM https://alvarotrigo.com/blog/css-text-animations/ *************/
 .waviy {
@@ -193,6 +178,7 @@ input[type=button]:hover
     font-family: 'DotGothic16', sans-serif;
     margin: 7em 3em;
 }
+
 .waviy span {
     /*font-family: 'Alfa Slab One', cursive;*/
     position: relative;
@@ -203,6 +189,7 @@ input[type=button]:hover
     animation-delay: calc(.1s * var(--i));
 
 }
+
 @keyframes waviy {
     0%, 40%, 100% {
         transform: translateY(0)
