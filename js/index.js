@@ -115,10 +115,10 @@
             html += `<div class="carousel-item ${(i === 0) ? "active" : ""}" data-movie="${arr[i].id}"  id="movie${i}">
                         <div class="movie-content" id="movie-content${i}">
                             <div class=" flex-column deleteMovieBtn"><input type="button" id="deleteMovieBtn${i}" class=" w-25 d-flex justify-content-center align-self-start" value="X"></div>
-                            <div id="title${i}" class="d-flex justify-content-center dotgothic mb-2">Title: ${arr[i].title}</div>
+                            <div id="title${i}" class="d-flex justify-content-center dotgothic mb-2 text-capitalize" >Title: ${arr[i].title}</div>
                             <div id="movie-poster${i}" class="movie-poster"></div>
-                            <div id="genres" class="d-flex justify-content-center dotgothic2 mt-3">Genre(s): ${arr[i].genre}</div>
-                            <div id="actors" class="d-flex justify-content-center dotgothic2">Actor(s): ${arr[i].actors}</div>
+                            <div id="genres" class="d-flex justify-content-center dotgothic2 mt-3 text-capitalize">Genre(s): ${arr[i].genre}</div>
+                            <div id="actors" class="d-flex justify-content-center dotgothic2 text-capitalize" >Actor(s): ${arr[i].actors}</div>
                             <div class="d-flex justify-content-center"><button id="updateMovieBtn${i}" class="btn-listeners mt-2">Update</button></div>
                         </div>
                         
