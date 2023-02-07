@@ -37,8 +37,10 @@ body {
     margin:auto;
     align-content: center;
     width: auto;
-    max-width: 15em;
+    max-width: 18em;
 }
+
+
 
 
 .button
@@ -50,11 +52,18 @@ body {
     height: 2em;
 }
 
+
+
+/****** TITLE TEXT ******/
 .dotgothic
 {
     font-family: 'DotGothic16', sans-serif;
     font-size: 2em;
+    padding: 1em;
+
 }
+
+/****** OTHER TEXT ******/
 .dotgothic2
 {
     font-family: 'DotGothic16', sans-serif;
@@ -75,36 +84,31 @@ input[type=button]
     border: none;
 }
 
+.input-movie
+{
+    font-family: 'DotGothic16', sans-serif;
 
+    padding: .25em;
 
-/****** ID'S ***********/
-#movie {
-    display: flex;
-    margin: 1em 0;
+    border-radius: 10px;
+}
 
+.search-btn {
+    background-color: beige;
+    opacity: 80%;
 }
 
 .myCarousel
 {
-    width: 30%;
+    width: 35em;
     height: auto;
     background-color: beige;
     opacity: 80%;
     border-radius: 25px;
     padding-bottom: 2em;
-}
 
+    margin: 0 2em 5em 2em;
 
-#header-text
-{
-    font-size: 3.5em;
-    font-family: 'Bungee Shade', cursive;
-    color: beige;
-}
-
-#navbar
-{
-    border-bottom: dashed 4px #e0d9ca;
 }
 
 .update-movie{
@@ -122,10 +126,77 @@ input[type=button]
     width: auto;
 }
 
+
+/****** ID'S ***********/
+
+#add-a-movie
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    margin-bottom: -.25em;
+
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 2em;
+
+}
+
+#movie {
+    display: flex;
+    margin: 1em 0;
+
+}
+
+#header-text
+{
+    font-size: 3.5em;
+    font-family: 'Bungee Shade', cursive;
+    color: beige;
+}
+
+#navbar
+{
+    border-bottom: dashed 4px #e0d9ca;
+}
+
+
 #movie-search {
     opacity: 80%;
+    font-family: 'DotGothic16', sans-serif;
+    padding: .25em;
+
+    /**** top-left, top-right, bottom-right, bottom-left ******/
+    border-radius: 8px 0 0 8px;
+
 }
-.search-btn {
-    background-color: beige;
-    opacity: 80%;
+
+
+
+
+/***** LOADING... *******/
+/***** FROM https://alvarotrigo.com/blog/css-text-animations/ *************/
+.waviy {
+    position: relative;
+    font-size: 2.25em;
+    font-family: 'DotGothic16', sans-serif;
+    margin: 7em 3em;
 }
+.waviy span {
+    /*font-family: 'Alfa Slab One', cursive;*/
+    position: relative;
+    display: inline-block;
+    color: black;
+    text-transform: uppercase;
+    animation: waviy 2s infinite;
+    animation-delay: calc(.1s * var(--i));
+
+}
+@keyframes waviy {
+    0%, 40%, 100% {
+        transform: translateY(0)
+    }
+    20% {
+        transform: translateY(-10px)
+    }
+}
+

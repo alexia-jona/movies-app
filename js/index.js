@@ -109,6 +109,9 @@
         }
     }
 
+
+    ////////// PUTTING MOVIES IN HTML ////////////
+
     async function populateMovies(arr) {
         html = '';
         for (let i = 0; i < arr.length; i++) {
@@ -122,10 +125,17 @@
                             <div class="d-flex justify-content-center"><button id="updateMovieBtn${i}" class="btn-listeners mt-2">Update</button></div>
                         </div>
                         
+                        <!---- FORM COLUMN ------>
                             <form class="update-movie hidden" id="update-form${i}">
+                                <label for="update-title${i}" class="dotgothic2">Title:</label><br>
                                 <input type="text" id="update-title${i}" name="title" placeholder="Change Title..." value="${arr[i].title}"><br>
+                                
+                                <label for="update-genres${i}" class="dotgothic2">Genres:</label><br>
                                 <input type="text" id="update-genres${i}" name="genres" placeholder="Change genres..." value="${arr[i].genre}"><br>
+                                
+                                 <label for="update-actors${i}" class="dotgothic2">Actor(s):</label><br>
                                 <input type="text" id="update-actors${i}" name="actors" placeholder="Change actors..." value="${arr[i].actors}"><br><br>
+                                
                                 <input class="btn-listeners ms-3  px-4 d-flex justify-content-center" type="submit" value="Update Movie" id="updateMovie${i}">
                             </form>
                        <!---- FORM COLUMN ------>
