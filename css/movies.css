@@ -54,7 +54,12 @@ body {
 {
     font-family: 'DotGothic16', sans-serif;
     font-size: 2em;
-
+}
+.dotgothic2
+{
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 1em;
+    font-weight: bold;
 }
 
 input[type=button]
@@ -102,7 +107,25 @@ input[type=button]
     border-bottom: dashed 4px #e0d9ca;
 }
 
+.update-movie{
+    padding-left: 7em;
+    padding-top: 4em;
+
+}
+
+.btn-listeners {
+    font-family: 'DotGothic16', sans-serif;
+    background-color: black;
+    color: white;
+    border: 3px solid white;
+    height: 3em;
+    width: auto;
+}
+
 #movie-search {
+    opacity: 80%;
+}
+.search-btn {
     background-color: beige;
     opacity: 80%;
 }

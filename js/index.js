@@ -111,18 +111,18 @@
             html += `<div class="carousel-item ${(i === 0) ? "active" : ""}" data-movie="${arr[i].id}"  id="movie${i}">
                         <div class="movie-content" id="movie-content${i}">
                             <div class=" flex-column deleteMovieBtn"><input type="button" id="deleteMovieBtn${i}" class=" w-25 d-flex justify-content-center align-self-start" value="X"></div>
-                            <div id="title${i}" class="d-flex justify-content-center dotgothic">Title: ${arr[i].title}</div>
+                            <div id="title${i}" class="d-flex justify-content-center dotgothic mb-2">Title: ${arr[i].title}</div>
                             <div id="movie-poster${i}" class="movie-poster"></div>
-                            <div id="genres" class="d-flex justify-content-center dotgothic">Genre(s): ${arr[i].genre}</div>
-                            <div id="actors" class="d-flex justify-content-center dotgothic">Actor(s): ${arr[i].actors}</div>
-                            <div class="d-flex justify-content-center"><button id="updateMovieBtn${i}" class="">Update</button></div>
+                            <div id="genres" class="d-flex justify-content-center dotgothic2 mt-3">Genre(s): ${arr[i].genre}</div>
+                            <div id="actors" class="d-flex justify-content-center dotgothic2">Actor(s): ${arr[i].actors}</div>
+                            <div class="d-flex justify-content-center"><button id="updateMovieBtn${i}" class="btn-listeners mt-2">Update</button></div>
                         </div>
                         
-                            <form class=" hidden" id="update-form${i}">
+                            <form class="update-movie hidden" id="update-form${i}">
                                 <input type="text" id="update-title${i}" name="title" placeholder="Change Title..." value="${arr[i].title}"><br>
                                 <input type="text" id="update-genres${i}" name="genres" placeholder="Change genres..." value="${arr[i].genre}"><br>
                                 <input type="text" id="update-actors${i}" name="actors" placeholder="Change actors..." value="${arr[i].actors}"><br><br>
-                                <input type="submit" value="Update Movie" id="updateMovie${i}">
+                                <input class="btn-listeners ms-3  px-4 d-flex justify-content-center" type="submit" value="Update Movie" id="updateMovie${i}">
                             </form>
                        <!---- FORM COLUMN ------>
                  </div>`

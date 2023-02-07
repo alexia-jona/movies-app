@@ -37,11 +37,11 @@
             <form class="form-inline me-3 input-group w-25">
                 <input id="movie-search" class="form mr-sm-2" type="search" placeholder="Search Movie"
                        aria-label="Search">
-                <button id="searchBtn" class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+                <button id="searchBtn" class="search-btn btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
             </form>
         </nav>
     </div>
-    <div class="container col-12 d-flex flex-row justify-content-evenly">
+    <div class="container col-12 d-flex flex-row justify-content-evenly align-items-center">
         <div id="myCarousel" class=" myCarousel carousel carousel-dark slide col-6" data-ride="carousel">
             <div class=" carousel-inner" id="movies">
 
@@ -60,7 +60,7 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <div class="myCarousel  w-25 mt-4 d-flex align-items-center justify-content-center col-6">
+        <div class="myCarousel h-50 mt-4 d-flex align-items-center justify-content-center col-6">
             <div class="row d-flex justify-content-center">
                 <div class="column d-flex justify-content-center align-items-center ">
                     <form>
@@ -73,7 +73,7 @@
                         <label for="input-actors">Actor(s):</label><br>
                         <input type="text" id="input-actors" name="actors"><br><br>
 
-                        <input type="submit" value="Submit" id="submitMovie">
+                        <input class="btn-listeners" type="submit" value="Submit" id="submitMovie">
                     </form>
                 </div>
             </div>
