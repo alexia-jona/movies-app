@@ -30,9 +30,9 @@
         $('#input-genres').val('');
         $('#input-actors').val('');
 
+        editMovie(movies);
         addListeners();
         posterOnLoad(movies);
-        editMovie(movies);
 
     });
 
@@ -81,7 +81,7 @@
 
         html = '';
         await populateMovies(searchedMovie).then(addListeners);
-        editMovie(searchedMovie);
+         await editMovie(searchedMovie);
         await renderPosters(searchedMovie)
     })
 
