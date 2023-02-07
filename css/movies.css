@@ -170,6 +170,11 @@ input[type=button]
 
 }
 
+#header-text
+{
+    cursor: pointer;
+}
+
 /***** LOADING... *******/
 /***** FROM https://alvarotrigo.com/blog/css-text-animations/ *************/
 .waviy {

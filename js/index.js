@@ -69,6 +69,14 @@
     }
 
 
+    ////// 'REFRESH' THE CAROUSEL /////
+    $('#header-text').on('click', async function()
+    {
+        await populateMovies(movies).then(addListeners);
+        renderPosters(movies);
+    })
+
+
     /////// SEARCH BAR ////////////////
 
     let searchedMovie;
