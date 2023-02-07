@@ -4,6 +4,7 @@
     // with your team name in the "js/movies-api.js" file.
 
     let movies = await getMovies();
+
     let html = '';
 
     await populateMovies(movies);
@@ -60,8 +61,10 @@
             $(`#updateMovieBtn${i}`).on('click', function (e) {
                 e.preventDefault();
                 $(`#movie-content${i}`).toggleClass('hidden');
-                $(`#update-form${i}`).toggleClass('hidden');
+                $(`#update-form${i}`).toggleClass('hidden')
+
             });
+
         }
     }
 
@@ -74,11 +77,12 @@
         e.preventDefault();
         searchedMovie = movies.filter(movie => movie.title.toLowerCase() === $('#movie-search').val().toLowerCase());
         changedMovie = await getMovie(searchedMovie);
+        document.getElementById('movie-search').value = ''
 
         html = '';
         await populateMovies(searchedMovie).then(addListeners);
         editMovie(searchedMovie);
-        renderPosters(searchedMovie)
+        await renderPosters(searchedMovie)
     })
 
     /////// CHECKING FOR BUTTON CLICK ON UPDATE ////////
@@ -100,7 +104,7 @@
                 await updateMovie(updateMovieObj)
                 updatedMovies = await getUpdatedMovies()
                 await populateMovies(updatedMovies).then(addListeners);
-                renderPosters(updatedMovies);
+              await renderPosters(updatedMovies);
             });
         }
     }
