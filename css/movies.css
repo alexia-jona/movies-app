@@ -42,7 +42,6 @@ body {
 
 
 
-
 .button
 {
     display: flex;
@@ -52,6 +51,10 @@ body {
     height: 2em;
 }
 
+.deleteMovieBtn
+{
+    margin: .55em 5em 0 0;
+}
 
 
 /****** TITLE TEXT ******/
@@ -59,7 +62,9 @@ body {
 {
     font-family: 'DotGothic16', sans-serif;
     font-size: 2em;
+    color: black;
     padding: 1em;
+    /*font-weight: bold;*/
 
 }
 
@@ -78,10 +83,14 @@ input[type=button]
     font-family: 'Metamorphous', cursive;
     font-weight: bold;
     font-size: 2em;
-    background-color: beige;
+    background-color: rgba(246, 245, 222, 0%);
     border-radius: 25px;
     color: #a82c3a;
     border: none;
+}
+input[type=button]:hover
+{
+    color: red;
 }
 
 .input-movie
@@ -102,8 +111,8 @@ input[type=button]
 {
     width: 35em;
     height: auto;
-    background-color: beige;
-    opacity: 80%;
+    background-color: rgba(219, 219, 206, 80%);
+    /*opacity: 70%;*/
     border-radius: 25px;
     padding-bottom: 2em;
 
@@ -138,6 +147,7 @@ input[type=button]
 
     font-family: 'DotGothic16', sans-serif;
     font-size: 2em;
+    color: black;
 
 }
 
