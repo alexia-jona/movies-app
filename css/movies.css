@@ -111,7 +111,9 @@ input[type=button]:hover
 {
     width: 35em;
     height: auto;
-    background-color: rgba(219, 219, 206, 80%);
+    /*background-color: rgba(246,	245, 222, 65%);*****/  /**OG BEIGE*/
+    background-color: rgba(173, 204, 217, 65%); /***** LIGHTER BLUE *******/
+    /*background-color: rgba(170, 187, 194, 65%);*/ /**** LIGHT BLUE *****/
     /*opacity: 70%;*/
     border-radius: 25px;
     padding-bottom: 2em;
